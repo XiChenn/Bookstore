@@ -2,10 +2,10 @@ Bookstore
 =========
 
 ### Multitiered Architecturein a Java EE Application Model
-![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/javaArchitecture)
+![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/javaArchitecture.jpeg)
 
 ### Layers in an Enterprise Application
-![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/enterpriseLayer)
+![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/enterpriseLayer.jpg)
 
 ### Web Layer
 The web layer of a web application consists of the web tier components of Java EE such as servlets and JSP. The web layer can access the service layer, but there should not be a tight coupling between the web layer and the service layer. That is, changing the service layer should not impact the web layer.
