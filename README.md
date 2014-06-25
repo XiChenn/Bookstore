@@ -4,5 +4,7 @@ Bookstore
 2. The Book table stores the book details such as titles.
 3. The Author table stores the details of the authors.
 
-![Alt text](https://avatars0.githubusercontent.com/u/5487100?u=71f6c71e9242c849e07da31ea889e976024b19f8&s=140 raw=true "Optional Title")
+The data access layer is responsible for interfacing with the underlying persistence mechanism in a transparent way in order to store and retrieve objects from the database. This transparency means that the data access layer can switch the persistence mechanism from plain JDBC14 to ORM15 persistence technologies such as Hibernate,16 JPA,17 and so on, without affecting the client of the data access layer. This transparency is achieved via the data access object (DAO) pattern, as illustrated as follows:
+
+![Alt text](resources/DAOPattern.jpeg raw=true "DAO Pattern")
 
