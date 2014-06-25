@@ -1,7 +1,6 @@
 package bookstore.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,55 +10,23 @@ import java.util.List;
 import bookstore.model.Author;
 import bookstore.model.Book;
 import bookstore.model.Category;
+import bookstore.model.Database;
 
 public class BookDAOImpl implements BookDAO {
-
-	/*
-	 * Loading drivers. Java 6 supports automatic driver discovery. So it is not
-	 * necessary to load the driver explicitly. However, to be safe, load the
-	 * driver explicitly.
-	 */
-	static {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.err.println("Loading MySQL error!");
-			e.printStackTrace();
-		}
+	public BookDAOImpl() {
+		Database.getInstance().connect();
 	}
-
-	/*
-	 * Establishing connection. It allows to run SQL against the database. Need
-	 * provide MySQL Connector/J JAR file, which converts JDBC calls into a
-	 * network protocol the MySQL database can understand
-	 */
-	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/bookstore_demo", "root", "");
-	}
-
-	// Close the connection to avoid overhead
-	private void closeConnection(Connection connection) {
-		if (connection == null) {
-			return;
-		}
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	@Override
 	public List<Book> findAllBooks() {
 		String sql = "select * from book, author where book.id = author.book_id";
 
 		List<Author> authorList = new ArrayList<Author>();
 		List<Book> result = new ArrayList<Book>();
-
+	
 		Connection connection = null;
 		try {
-			connection = getConnection();
+			connection = Database.getInstance().getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 
@@ -82,8 +49,6 @@ public class BookDAOImpl implements BookDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			closeConnection(connection);
 		}
 		return result;
 	}
@@ -104,7 +69,7 @@ public class BookDAOImpl implements BookDAO {
 
 		Connection connection = null;
 		try {
-			connection = getConnection();
+			connection = Database.getInstance().getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 
@@ -128,8 +93,6 @@ public class BookDAOImpl implements BookDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			closeConnection(connection);
 		}
 		return result;
 	}
@@ -141,7 +104,7 @@ public class BookDAOImpl implements BookDAO {
 
 		Connection connection = null;
 		try {
-			connection = getConnection();
+			connection = Database.getInstance().getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
 
@@ -155,8 +118,6 @@ public class BookDAOImpl implements BookDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			closeConnection(connection);
 		}
 		return result;
 	}

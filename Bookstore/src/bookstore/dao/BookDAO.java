@@ -23,7 +23,7 @@ public interface BookDAO {
 	 * Searching books by keyword in the title of the book or by the first and
 	 * last names of the author
 	 */
-	public List<Book> searchBooksByKeyword(String keyWord);
+	public List<Book> searchBooksByKeyword(String keyword);
 
 	/*
 	 * Providing a categorized listing of books
