@@ -6,5 +6,5 @@ Bookstore
 
 The data access layer is responsible for interfacing with the underlying persistence mechanism in a transparent way in order to store and retrieve objects from the database. This transparency means that the data access layer can switch the persistence mechanism from plain JDBC14 to ORM15 persistence technologies such as Hibernate,16 JPA,17 and so on, without affecting the client of the data access layer. This transparency is achieved via the data access object (DAO) pattern, as illustrated as follows:
 
-![Alt text](resources/DAOPattern.jpeg raw=true "DAO Pattern")
+![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/DAOPattern.jpeg "DAO Pattern")
 
