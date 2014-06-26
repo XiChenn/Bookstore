@@ -24,7 +24,7 @@ The data access layer is responsible for interfacing with the underlying persist
 ![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/DAOPattern.jpeg "DAO Pattern")
 
 ### The MVC Pattern
-![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/MVCPattern.jpg "MVC Pattern")
+![Alt text](https://raw.githubusercontent.com/XiChenn/Bookstore/master/Bookstore/resources/mvcPattern.jpg "MVC Pattern")
 In MVC(also called Model-2), a controller handles the user request instead of another JSP page. The controller is implemented as a servlet. The following steps are executed when the user submits the request:
 1. The controller servlet handles the user’s request.
 2. The controller servlet instantiates the appropriate JavaBeans based on the request.
