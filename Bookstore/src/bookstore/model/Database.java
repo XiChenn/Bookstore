@@ -15,7 +15,17 @@ public class Database {
 	private Connection connection;
 
 	private Database() {
-
+		/*
+		 * Loading drivers. Java 6 supports automatic driver discovery. So it is
+		 * not necessary to load the driver explicitly. However, to be safe,
+		 * load the driver explicitly.
+		 */
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.err.println("Loading MySQL error!");
+			e.printStackTrace();
+		}
 	}
 
 	public static Database getInstance() {
@@ -29,19 +39,7 @@ public class Database {
 	public void connect() {
 		if (connection != null) {
 			return;
-		}
-
-		/*
-		 * Loading drivers. Java 6 supports automatic driver discovery. So it is
-		 * not necessary to load the driver explicitly. However, to be safe,
-		 * load the driver explicitly.
-		 */
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.err.println("Loading MySQL error!");
-			e.printStackTrace();
-		}
+		}		
 
 		/*
 		 * Establishing connection. It allows to run SQL against the database. Need
@@ -63,6 +61,7 @@ public class Database {
 		}
 		try {
 			connection.close(); // Close the connection to avoid overhead
+			connection = null;
 		} catch (SQLException e) {
 			System.err.println("Closing connection to MySQL error");
 			e.printStackTrace();

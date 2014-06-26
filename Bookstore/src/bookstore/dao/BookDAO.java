@@ -14,6 +14,7 @@ import bookstore.model.Category;
  * 
  */
 public interface BookDAO {
+	
 	/*
 	 * Listing all books from the database
 	 */

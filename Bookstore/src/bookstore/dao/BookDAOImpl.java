@@ -14,7 +14,7 @@ import bookstore.model.Database;
 
 public class BookDAOImpl implements BookDAO {
 	public BookDAOImpl() {
-		Database.getInstance().connect();
+		
 	}
 	
 	@Override
@@ -24,6 +24,7 @@ public class BookDAOImpl implements BookDAO {
 		List<Author> authorList = new ArrayList<Author>();
 		List<Book> result = new ArrayList<Book>();
 	
+		Database.getInstance().connect();
 		Connection connection = null;
 		try {
 			connection = Database.getInstance().getConnection();
@@ -49,6 +50,8 @@ public class BookDAOImpl implements BookDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			Database.getInstance().disconnect();
 		}
 		return result;
 	}
@@ -67,6 +70,7 @@ public class BookDAOImpl implements BookDAO {
 				+ "%'"
 				+ " or last_name like '%" + keyword.trim() + "%'";
 
+		Database.getInstance().connect();
 		Connection connection = null;
 		try {
 			connection = Database.getInstance().getConnection();
@@ -93,6 +97,8 @@ public class BookDAOImpl implements BookDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			Database.getInstance().disconnect();
 		}
 		return result;
 	}
@@ -102,6 +108,7 @@ public class BookDAOImpl implements BookDAO {
 		List<Category> result = new ArrayList<Category>();
 		String sql = "select * from category";
 
+		Database.getInstance().connect();
 		Connection connection = null;
 		try {
 			connection = Database.getInstance().getConnection();
@@ -118,6 +125,8 @@ public class BookDAOImpl implements BookDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			Database.getInstance().disconnect();
 		}
 		return result;
 	}
